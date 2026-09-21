@@ -1,11 +1,38 @@
-<!doctype html><html lang="es"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover"><meta name="theme-color" content="#15537d"><title>LID 301 · Control de asistencia</title><style>
-:root{--b:#15537d;--b2:#0e6d91;--i:#183449;--m:#667b8b;--bg:#f3f7fa;--c:#fff;--l:#dce7ed;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}*{box-sizing:border-box}html,body{margin:0;min-height:100%;background:var(--bg);color:var(--i)}body{min-height:100dvh}.top{height:58px;padding:0 14px;display:flex;align-items:center;gap:11px;background:#fff;border-bottom:1px solid var(--l)}.logo{width:37px;height:37px;border-radius:11px;background:linear-gradient(135deg,var(--b),var(--b2));display:grid;place-items:center;color:#fff;font-weight:900;font-size:13px}.brand b{display:block;font-size:15px}.brand span{font-size:11px;color:var(--m)}.stage{min-height:calc(100dvh - 58px);display:grid;place-items:center;padding:18px}.card{width:min(520px,100%);background:var(--c);border:1px solid var(--l);border-radius:20px;padding:28px;box-shadow:0 14px 42px rgba(24,52,73,.1)}.mark{width:68px;height:68px;border-radius:19px;background:linear-gradient(135deg,var(--b),var(--b2));display:grid;place-items:center;margin:0 auto 17px;color:#fff;font-size:22px;font-weight:900}.center{text-align:center}h1{font-size:23px;margin:0 0 8px}.lead{font-size:14px;line-height:1.5;color:var(--m);margin:0 auto 21px}label{display:block;font-size:13px;font-weight:800;margin-bottom:7px}input{width:100%;height:48px;border:1px solid #cddae3;border-radius:12px;padding:0 13px;font:inherit;font-size:15px;outline:none}input:focus{border-color:var(--b);box-shadow:0 0 0 3px rgba(21,83,125,.1)}.recent{display:none;margin-top:9px;gap:7px;flex-wrap:wrap}.recent.show{display:flex}.chip{border:1px solid var(--l);background:#f7fafc;border-radius:999px;padding:7px 10px;font-size:12px;cursor:pointer}.actions{display:grid;gap:10px;margin-top:18px}.btn{border:0;border-radius:11px;padding:12px 15px;min-height:46px;display:flex;align-items:center;justify-content:center;font-size:14px;font-weight:800;text-decoration:none;cursor:pointer}.primary{background:var(--b);color:#fff}.secondary{background:#edf3f7;color:var(--i)}.err{display:none;color:#b3261e;font-size:12px;margin-top:8px}.err.show{display:block}.note{font-size:12px;line-height:1.45;color:#8293a0;text-align:center;margin-top:15px}@media(max-width:650px){.top{height:55px;padding:0 10px}.stage{min-height:calc(100dvh - 55px);padding:13px}.card{padding:22px 16px;border-radius:17px}.mark{width:61px;height:61px;border-radius:17px}h1{font-size:21px}input{font-size:16px}}
-</style></head><body><header class="top"><div class="logo">301</div><div class="brand"><b>LID 301</b><span>Control de estudiantes y asistencia · UPCH</span></div></header><main class="stage"><section class="card"><div class="center"><div class="mark">301</div><h1>Ingresar al LID 301</h1><p class="lead">Indica qué cuenta UPCH deseas usar. No se crea otra contraseña ni se envía ningún código.</p></div><form id="f"><label for="e">Correo institucional UPCH</label><input id="e" type="email" inputmode="email" autocomplete="email" placeholder="nombre.apellido@upch.pe" required><div class="recent" id="r"></div><div class="err" id="x">Ingresa un correo válido terminado en @upch.pe.</div><div class="actions"><button class="btn primary" type="submit">Entrar con este correo</button><a class="btn secondary" href="https://script.google.com/a/macros/upch.pe/s/AKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g/exec">Usar la cuenta activa de Google</a></div></form><div class="note">Los correos recordados se guardan solo en este dispositivo. Google sigue autenticando la cuenta y LID 301 valida después si corresponde a ADMIN, DOCENTE o ESTUDIANTE.</div></section></main><script>
-const A="https://script.google.com/a/macros/upch.pe/s/AKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g/exec",K='lid301_recent_upch_emails',E=document.getElementById('e'),R=document.getElementById('r'),X=document.getElementById('x');
-const n=v=>String(v||'').trim().toLowerCase(),v=e=>/^[^@\s]+@upch\.pe$/i.test(e);
-function g(){try{let a=JSON.parse(localStorage.getItem(K)||'[]');return Array.isArray(a)?a.filter(v).slice(0,5):[]}catch(_){return[]}}
-function s(e){try{localStorage.setItem(K,JSON.stringify([e,...g().filter(x=>x!==e)].slice(0,5)))}catch(_){}}
-function q(){let a=g();R.innerHTML='';if(!a.length)return;a.forEach(e=>{let b=document.createElement('button');b.type='button';b.className='chip';b.textContent=e;b.onclick=()=>{E.value=e;X.classList.remove('show')};R.appendChild(b)});R.classList.add('show')}
-document.getElementById('f').onsubmit=e=>{e.preventDefault();let m=n(E.value);if(!v(m)){X.classList.add('show');E.focus();return}s(m);location.href=A+(A.includes('?')?'&':'?')+'authuser='+encodeURIComponent(m)};
-E.oninput=()=>X.classList.remove('show');q();
-</script></body></html>
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#15537d">
+  <meta http-equiv="refresh" content="1;url=https://script.google.com/macros/s/AKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g/exec">
+  <title>LID 301 · Abriendo sistema</title>
+  <style>
+    :root{--b:#15537d;--b2:#0e6d91;--i:#183449;--m:#667b8b;--bg:#f3f7fa;--c:#fff;--l:#dce7ed;font-family:system-ui,-apple-system,"Segoe UI",Roboto,Arial,sans-serif}
+    *{box-sizing:border-box}
+    html,body{margin:0;min-height:100%;background:var(--bg);color:var(--i)}
+    body{min-height:100dvh;display:grid;place-items:center;padding:18px}
+    .card{width:min(460px,100%);background:var(--c);border:1px solid var(--l);border-radius:20px;padding:28px;box-shadow:0 14px 42px rgba(24,52,73,.10);text-align:center}
+    .logo{width:68px;height:68px;border-radius:19px;background:linear-gradient(135deg,var(--b),var(--b2));display:grid;place-items:center;margin:0 auto 18px;color:#fff;font-size:22px;font-weight:900}
+    h1{margin:0 0 8px;font-size:23px}
+    p{margin:0;color:var(--m);font-size:14px;line-height:1.5}
+    .spinner{width:32px;height:32px;border:4px solid #dce6ed;border-top-color:var(--b);border-radius:50%;animation:spin .8s linear infinite;margin:20px auto 16px}
+    @keyframes spin{to{transform:rotate(360deg)}}
+    .btn{margin-top:8px;display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:12px 18px;border-radius:11px;background:var(--b);color:#fff;text-decoration:none;font-weight:800;font-size:14px}
+    .note{margin-top:13px;font-size:12px;color:#8293a0}
+    @media(max-width:650px){.card{padding:22px 16px;border-radius:17px}.logo{width:61px;height:61px;border-radius:17px}h1{font-size:21px}.btn{width:100%}}
+  </style>
+</head>
+<body>
+  <main class="card">
+    <div class="logo">301</div>
+    <h1>Abriendo LID 301</h1>
+    <p>Serás redirigido automáticamente al sistema de control de estudiantes y asistencia.</p>
+    <div class="spinner"></div>
+    <a class="btn" href="https://script.google.com/macros/s/AKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g/exec">Abrir LID 301</a>
+    <div class="note">Si la redirección no ocurre, usa el botón.</div>
+  </main>
+  <script>
+    setTimeout(function(){ window.location.replace("https://script.google.com/macros/s/AKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g/exec"); }, 400);
+  </script>
+</body>
+</html>
