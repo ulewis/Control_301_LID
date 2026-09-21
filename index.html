@@ -1,0 +1,40 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="theme-color" content="#15537d">
+  <meta name="apple-mobile-web-app-capable" content="yes">
+  <title>LID 301 · Control de estudiantes y asistencia</title>
+  <style>
+    :root{font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color-scheme:light}
+    *{box-sizing:border-box}
+    html,body{margin:0;width:100%;min-height:100%;background:#f4f7fa}
+    body{overflow:hidden}
+    #app-shell{position:fixed;inset:0;background:#f4f7fa}
+    iframe{display:block;width:100%;height:100dvh;border:0;background:#f4f7fa}
+    #loading{position:fixed;inset:0;display:flex;flex-direction:column;gap:10px;align-items:center;justify-content:center;background:#f4f7fa;color:#17324a;z-index:5;transition:opacity .2s ease}
+    #loading.hide{opacity:0;pointer-events:none}
+    #loading strong{font-size:18px}
+    #loading span{font-size:13px;opacity:.72}
+    #fallback{position:fixed;left:12px;right:12px;bottom:max(12px,env(safe-area-inset-bottom));z-index:6;text-align:center;display:none}
+    #fallback a{display:inline-flex;align-items:center;justify-content:center;min-height:46px;padding:0 18px;border-radius:12px;background:#15537d;color:white;text-decoration:none;font-weight:800;box-shadow:0 8px 24px rgba(24,55,80,.16)}
+    @media(max-width:600px){
+      #loading strong{font-size:16px}
+      #fallback a{width:min(100%,340px)}
+    }
+  </style>
+</head>
+<body>
+  <div id="loading"><strong>Cargando LID 301</strong><span>Control de estudiantes y asistencia</span></div>
+  <div id="app-shell"><iframe id="app" title="LID 301" src="https://script.google.com/macros/s/AKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g/exec" allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe></div>
+  <div id="fallback"><a href="https://script.google.com/macros/s/AKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g/exec" target="_top">Abrir LID 301</a></div>
+  <script>
+    const frame=document.getElementById('app');
+    const loading=document.getElementById('loading');
+    const fallback=document.getElementById('fallback');
+    frame.addEventListener('load',()=>loading.classList.add('hide'));
+    setTimeout(()=>fallback.style.display='block',8000);
+  </script>
+</body>
+</html>
