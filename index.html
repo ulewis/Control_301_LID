@@ -8,29 +8,28 @@
   <title>LID 301 · Control de estudiantes y asistencia</title>
   <style>
     :root{--brand:#15537d;--brand2:#0e6d91;--ink:#183449;--muted:#667b8b;--bg:#f3f7fa;--card:#fff;--line:#dce7ed;--shadow:0 14px 42px rgba(24,52,73,.10);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color-scheme:light}
-    *{box-sizing:border-box}html,body{margin:0;width:100%;min-height:100%;background:var(--bg);color:var(--ink)}
+    *{box-sizing:border-box}
+    html,body{margin:0;width:100%;min-height:100%;background:var(--bg);color:var(--ink)}
     body{min-height:100dvh}
-    .top{height:60px;padding:0 16px;display:flex;align-items:center;gap:12px;background:#fff;border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+    .top{height:60px;padding:0 16px;display:flex;align-items:center;gap:12px;background:#fff;border-bottom:1px solid var(--line)}
     .logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;color:#fff;font-weight:900;font-size:13px}
-    .brand{min-width:0}.brand strong{display:block;font-size:15px;line-height:1.15}.brand span{display:block;font-size:11px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
-    .top-actions{margin-left:auto;display:flex;gap:8px}
-    .btn{border:0;border-radius:11px;padding:10px 14px;font-size:13px;font-weight:800;text-decoration:none;cursor:pointer;display:inline-flex;align-items:center;justify-content:center;min-height:40px}
-    .primary{background:var(--brand);color:#fff}.secondary{background:#edf3f7;color:var(--ink)}
-    .stage{height:calc(100dvh - 60px);position:relative}
-    iframe{display:block;width:100%;height:100%;border:0;background:#fff}
-    .welcome{height:100%;display:grid;place-items:center;padding:22px}
+    .brand strong{display:block;font-size:15px;line-height:1.15}
+    .brand span{display:block;font-size:11px;color:var(--muted)}
+    .stage{min-height:calc(100dvh - 60px);display:grid;place-items:center;padding:22px}
     .card{width:min(520px,100%);background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px;box-shadow:var(--shadow);text-align:center}
-    .bigmark{width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;margin:0 auto 18px;color:white;font-size:23px;font-weight:900}
-    h1{margin:0 0 8px;font-size:24px;letter-spacing:-.02em}p{margin:0 auto;color:var(--muted);font-size:14px;line-height:1.55;max-width:420px}
-    .welcome-actions{margin-top:22px;display:flex;gap:10px;justify-content:center;flex-wrap:wrap}.welcome-actions .btn{min-width:180px}
-    .note{margin-top:14px;font-size:12px;color:#8293a0}
-    .loading{position:absolute;inset:0;background:var(--bg);display:grid;place-items:center;padding:20px;z-index:8}
-    .loadingbox{text-align:center}.spinner{width:34px;height:34px;border:4px solid #dce6ed;border-top-color:var(--brand);border-radius:50%;animation:spin .8s linear infinite;margin:0 auto 13px}
-    @keyframes spin{to{transform:rotate(360deg)}}
-    .loadingbox strong{display:block;font-size:15px}.loadingbox span{display:block;color:var(--muted);font-size:12px;margin-top:5px}
+    .bigmark{width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;margin:0 auto 18px;color:#fff;font-size:23px;font-weight:900}
+    h1{margin:0 0 8px;font-size:24px;letter-spacing:-.02em}
+    p{margin:0 auto;color:var(--muted);font-size:14px;line-height:1.55;max-width:420px}
+    .actions{margin-top:22px;display:grid;gap:10px}
+    .btn{border:0;border-radius:11px;padding:12px 16px;font-size:14px;font-weight:800;text-decoration:none;cursor:pointer;display:flex;align-items:center;justify-content:center;min-height:46px}
+    .primary{background:var(--brand);color:#fff}
+    .secondary{background:#edf3f7;color:var(--ink)}
+    .note{margin-top:15px;font-size:12px;color:#8293a0}
     @media(max-width:680px){
-      .top{height:56px;padding:0 10px}.stage{height:calc(100dvh - 56px)}.logo{width:35px;height:35px}.brand strong{font-size:14px}.brand span{max-width:145px}
-      .top-actions .secondary{display:none}.btn{padding:9px 11px;font-size:12px}.card{padding:24px 17px;border-radius:18px}.bigmark{width:62px;height:62px;border-radius:17px}h1{font-size:21px}.welcome-actions{display:grid}.welcome-actions .btn{width:100%}
+      .top{height:56px;padding:0 10px}.stage{min-height:calc(100dvh - 56px);padding:16px}
+      .logo{width:35px;height:35px}.brand strong{font-size:14px}.brand span{font-size:10px}
+      .card{padding:24px 17px;border-radius:18px}.bigmark{width:62px;height:62px;border-radius:17px}
+      h1{font-size:21px}.btn{width:100%}
     }
   </style>
 </head>
@@ -38,52 +37,18 @@
   <header class="top">
     <div class="logo">301</div>
     <div class="brand"><strong>LID 301</strong><span>Control de estudiantes y asistencia · UPCH</span></div>
-    <div class="top-actions" id="topActions" hidden>
-      <a class="btn secondary" href="https://script.google.com/macros/s/AKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g/exec" target="_top">Abrir aparte</a>
-      <a class="btn primary" href="https://accounts.google.com/AccountChooser?continue=https%3A%2F%2Fulewis.github.io%2FControl_301_LID%2F%3Flogin%3D1">Cambiar cuenta</a>
-    </div>
   </header>
-  <main class="stage" id="stage"></main>
-  <script>
-    const APP_URL="https://script.google.com/macros/s/AKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g/exec";
-    const CHOOSER_URL="https://accounts.google.com/AccountChooser?continue=https%3A%2F%2Fulewis.github.io%2FControl_301_LID%2F%3Flogin%3D1";
-    const stage=document.getElementById('stage');
-    const topActions=document.getElementById('topActions');
-    const params=new URLSearchParams(location.search);
-
-    function showWelcome(){
-      topActions.hidden=true;
-      stage.innerHTML=`
-        <section class="welcome">
-          <div class="card">
-            <div class="bigmark">301</div>
-            <h1>Control del LID 301</h1>
-            <p>Selecciona la cuenta institucional UPCH con la que deseas ingresar. El sistema validará automáticamente si eres administrador, docente o estudiante.</p>
-            <div class="welcome-actions">
-              <a class="btn primary" href="${CHOOSER_URL}">Seleccionar cuenta UPCH</a>
-              <a class="btn secondary" href="${APP_URL}" target="_top">Abrir sistema directamente</a>
-            </div>
-            <div class="note">Diseñado para celular, tablet y computadora.</div>
-          </div>
-        </section>`;
-    }
-
-    function loadApp(){
-      topActions.hidden=false;
-      stage.innerHTML=`
-        <div class="loading" id="loading"><div class="loadingbox"><div class="spinner"></div><strong>Abriendo LID 301…</strong><span>Validando la cuenta seleccionada</span></div></div>
-        <iframe id="app" title="Sistema LID 301" src="${APP_URL}" allow="clipboard-write" referrerpolicy="strict-origin-when-cross-origin"></iframe>`;
-      const frame=document.getElementById('app');
-      const loading=document.getElementById('loading');
-      frame.addEventListener('load',()=>setTimeout(()=>{loading.style.display='none'},700));
-      setTimeout(()=>{
-        if(loading && loading.style.display!=='none'){
-          loading.innerHTML=`<div class="card"><h1>No se pudo cargar dentro de la página</h1><p>Google puede bloquear el inicio de sesión dentro de un marco. Puedes abrir el sistema directamente sin perder la cuenta seleccionada.</p><div class="welcome-actions"><a class="btn primary" href="${APP_URL}" target="_top">Abrir LID 301</a><a class="btn secondary" href="${CHOOSER_URL}">Elegir otra cuenta</a></div></div>`;
-        }
-      },8000);
-    }
-
-    params.get('login')==='1' ? loadApp() : showWelcome();
-  </script>
+  <main class="stage">
+    <section class="card">
+      <div class="bigmark">301</div>
+      <h1>Control del LID 301</h1>
+      <p>Selecciona la cuenta Google que deseas usar. Después, el sistema comprobará automáticamente si corresponde a un ADMIN, DOCENTE o ESTUDIANTE registrado.</p>
+      <div class="actions">
+        <a class="btn primary" href="https://accounts.google.com/AccountChooser?service=wise&continue=https%3A%2F%2Fscript.google.com%2Fmacros%2Fs%2FAKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g%2Fexec&followup=https%3A%2F%2Fscript.google.com%2Fmacros%2Fs%2FAKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g%2Fexec">Seleccionar cuenta Google / UPCH</a>
+        <a class="btn secondary" href="https://script.google.com/macros/s/AKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g/exec">Abrir con la cuenta activa</a>
+      </div>
+      <div class="note">Responsive para celular, tablet y computadora.</div>
+    </section>
+  </main>
 </body>
 </html>
