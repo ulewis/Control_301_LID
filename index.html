@@ -7,29 +7,30 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <title>LID 301 · Control de estudiantes y asistencia</title>
   <style>
-    :root{--brand:#15537d;--brand2:#0e6d91;--ink:#183449;--muted:#667b8b;--bg:#f3f7fa;--card:#fff;--line:#dce7ed;--shadow:0 14px 42px rgba(24,52,73,.10);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color-scheme:light}
+    :root{--brand:#15537d;--brand2:#0e6d91;--ink:#183449;--muted:#667b8b;--bg:#f3f7fa;--card:#fff;--line:#dce7ed;--danger:#b3261e;--shadow:0 14px 42px rgba(24,52,73,.10);font-family:system-ui,-apple-system,BlinkMacSystemFont,"Segoe UI",Roboto,Arial,sans-serif;color-scheme:light}
     *{box-sizing:border-box}
     html,body{margin:0;width:100%;min-height:100%;background:var(--bg);color:var(--ink)}
     body{min-height:100dvh}
     .top{height:60px;padding:0 16px;display:flex;align-items:center;gap:12px;background:#fff;border-bottom:1px solid var(--line)}
     .logo{width:38px;height:38px;border-radius:11px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;color:#fff;font-weight:900;font-size:13px}
-    .brand strong{display:block;font-size:15px;line-height:1.15}
-    .brand span{display:block;font-size:11px;color:var(--muted)}
+    .brand strong{display:block;font-size:15px;line-height:1.15}.brand span{display:block;font-size:11px;color:var(--muted)}
     .stage{min-height:calc(100dvh - 60px);display:grid;place-items:center;padding:22px}
-    .card{width:min(520px,100%);background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px;box-shadow:var(--shadow);text-align:center}
-    .bigmark{width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;margin:0 auto 18px;color:#fff;font-size:23px;font-weight:900}
-    h1{margin:0 0 8px;font-size:24px;letter-spacing:-.02em}
-    p{margin:0 auto;color:var(--muted);font-size:14px;line-height:1.55;max-width:420px}
-    .actions{margin-top:22px;display:grid;gap:10px}
-    .btn{border:0;border-radius:11px;padding:12px 16px;font-size:14px;font-weight:800;text-decoration:none;cursor:pointer;display:flex;align-items:center;justify-content:center;min-height:46px}
-    .primary{background:var(--brand);color:#fff}
-    .secondary{background:#edf3f7;color:var(--ink)}
-    .note{margin-top:15px;font-size:12px;color:#8293a0}
+    .card{width:min(520px,100%);background:var(--card);border:1px solid var(--line);border-radius:22px;padding:30px;box-shadow:var(--shadow)}
+    .center{text-align:center}.bigmark{width:72px;height:72px;border-radius:20px;background:linear-gradient(135deg,var(--brand),var(--brand2));display:grid;place-items:center;margin:0 auto 18px;color:#fff;font-size:23px;font-weight:900}
+    h1{margin:0 0 8px;font-size:24px;letter-spacing:-.02em}.lead{margin:0 auto 22px;color:var(--muted);font-size:14px;line-height:1.55;max-width:430px}
+    label{display:block;font-size:13px;font-weight:800;margin:0 0 7px}
+    .input{width:100%;height:48px;border:1px solid #cddae3;border-radius:12px;padding:0 13px;font:inherit;font-size:15px;color:var(--ink);background:#fff;outline:none}
+    .input:focus{border-color:var(--brand);box-shadow:0 0 0 3px rgba(21,83,125,.10)}
+    .recent{display:none;margin-top:9px;gap:7px;flex-wrap:wrap}.recent.show{display:flex}.chip{border:1px solid var(--line);background:#f7fafc;color:var(--ink);border-radius:999px;padding:7px 10px;font-size:12px;cursor:pointer;max-width:100%;overflow:hidden;text-overflow:ellipsis}
+    .actions{margin-top:18px;display:grid;gap:10px}.btn{border:0;border-radius:11px;padding:12px 16px;font-size:14px;font-weight:800;text-decoration:none;cursor:pointer;display:flex;align-items:center;justify-content:center;min-height:46px}
+    .primary{background:var(--brand);color:#fff}.secondary{background:#edf3f7;color:var(--ink)}
+    .error{display:none;color:var(--danger);font-size:12px;margin-top:8px}.error.show{display:block}
+    .note{margin-top:15px;text-align:center;font-size:12px;line-height:1.45;color:#8293a0}
     @media(max-width:680px){
-      .top{height:56px;padding:0 10px}.stage{min-height:calc(100dvh - 56px);padding:16px}
+      .top{height:56px;padding:0 10px}.stage{min-height:calc(100dvh - 56px);padding:14px}
       .logo{width:35px;height:35px}.brand strong{font-size:14px}.brand span{font-size:10px}
-      .card{padding:24px 17px;border-radius:18px}.bigmark{width:62px;height:62px;border-radius:17px}
-      h1{font-size:21px}.btn{width:100%}
+      .card{padding:23px 16px;border-radius:18px}.bigmark{width:62px;height:62px;border-radius:17px}
+      h1{font-size:21px}.input{font-size:16px}
     }
   </style>
 </head>
@@ -40,15 +41,69 @@
   </header>
   <main class="stage">
     <section class="card">
-      <div class="bigmark">301</div>
-      <h1>Control del LID 301</h1>
-      <p>Selecciona la cuenta Google que deseas usar. Después, el sistema comprobará automáticamente si corresponde a un ADMIN, DOCENTE o ESTUDIANTE registrado.</p>
-      <div class="actions">
-        <a class="btn primary" href="https://accounts.google.com/AccountChooser?service=wise&continue=https%3A%2F%2Fscript.google.com%2Fmacros%2Fs%2FAKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g%2Fexec&followup=https%3A%2F%2Fscript.google.com%2Fmacros%2Fs%2FAKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g%2Fexec">Seleccionar cuenta Google / UPCH</a>
-        <a class="btn secondary" href="https://script.google.com/macros/s/AKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g/exec">Abrir con la cuenta activa</a>
+      <div class="center">
+        <div class="bigmark">301</div>
+        <h1>Ingresar al LID 301</h1>
+        <p class="lead">Indica qué cuenta UPCH deseas usar. No se crea otra contraseña ni se envía ningún código; Google usará esa sesión si ya está abierta en este navegador.</p>
       </div>
-      <div class="note">Responsive para celular, tablet y computadora.</div>
+
+      <form id="loginForm">
+        <label for="email">Correo institucional UPCH</label>
+        <input class="input" id="email" name="email" type="email" inputmode="email" autocomplete="email" placeholder="nombre.apellido@upch.pe" required>
+        <div class="recent" id="recent"></div>
+        <div class="error" id="error">Ingresa un correo válido terminado en @upch.pe.</div>
+        <div class="actions">
+          <button class="btn primary" type="submit">Entrar con este correo</button>
+          <a class="btn secondary" href="https://script.google.com/macros/s/AKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g/exec">Usar la cuenta activa de Google</a>
+        </div>
+      </form>
+
+      <div class="note">Los correos recordados se guardan únicamente en este dispositivo. La autorización real sigue siendo de Google y LID 301 valida después si eres ADMIN, DOCENTE o ESTUDIANTE.</div>
     </section>
   </main>
+
+  <script>
+    const APP_URL="https://script.google.com/macros/s/AKfycbyKWiY6tKp4JMa9y__6HcZItW7bNPu2YJX0TkqsQiBm5vSllwBVrB7g0YoxFK5Qv-7Z5g/exec";
+    const STORAGE_KEY='lid301_recent_upch_emails';
+    const emailEl=document.getElementById('email');
+    const recentEl=document.getElementById('recent');
+    const errorEl=document.getElementById('error');
+
+    function normalize(v){return String(v||'').trim().toLowerCase();}
+    function valid(v){return /^[^@\s]+@upch\.pe$/i.test(v);}
+    function getRecent(){
+      try{
+        const a=JSON.parse(localStorage.getItem(STORAGE_KEY)||'[]');
+        return Array.isArray(a)?a.filter(valid).slice(0,5):[];
+      }catch(e){return [];}
+    }
+    function saveRecent(email){
+      const next=[email,...getRecent().filter(x=>x!==email)].slice(0,5);
+      try{localStorage.setItem(STORAGE_KEY,JSON.stringify(next));}catch(e){}
+    }
+    function renderRecent(){
+      const list=getRecent();
+      recentEl.innerHTML='';
+      if(!list.length){recentEl.classList.remove('show');return;}
+      list.forEach(email=>{
+        const b=document.createElement('button');
+        b.type='button'; b.className='chip'; b.textContent=email;
+        b.addEventListener('click',()=>{emailEl.value=email; emailEl.focus(); errorEl.classList.remove('show');});
+        recentEl.appendChild(b);
+      });
+      recentEl.classList.add('show');
+    }
+    document.getElementById('loginForm').addEventListener('submit',e=>{
+      e.preventDefault();
+      const email=normalize(emailEl.value);
+      if(!valid(email)){errorEl.classList.add('show');emailEl.focus();return;}
+      errorEl.classList.remove('show');
+      saveRecent(email);
+      const sep=APP_URL.includes('?')?'&':'?';
+      location.href=APP_URL+sep+'authuser='+encodeURIComponent(email);
+    });
+    emailEl.addEventListener('input',()=>errorEl.classList.remove('show'));
+    renderRecent();
+  </script>
 </body>
 </html>
